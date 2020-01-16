@@ -4,7 +4,9 @@
   "description": "puppeteer learning courses",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test google" : "test google.spec.js",
+    "test facebook" : "test form.spec.js"
   },
   "repository": {
     "type": "git",
