@@ -1,0 +1,32 @@
+{
+  "name": "puppeteer-learning",
+  "version": "1.0.0",
+  "description": "puppeteer learning courses",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikonov1996/puppeteer-learning.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "studying"
+  ],
+  "author": "Nikonov V A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikonov1996/puppeteer-learning/issues"
+  },
+  "homepage": "https://github.com/nikonov1996/puppeteer-learning#readme",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "puppeteer": "^2.0.0",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.3"
+  }
+}
