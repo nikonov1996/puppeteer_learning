@@ -20,6 +20,7 @@ beforeAll(async () => {
   browser = await puppeteer.launch({
     headless: false,
     slowMo: 80,
+    defaultViewport: null,
     args: [`--window-size=${width},${height}`]
   });
   page = await browser.newPage();
@@ -45,6 +46,7 @@ describe("Registration form tests", () => {
     await regist_form.fillLastName(user.lastname);
     await regist_form.fillEmail(user.email);
     await regist_form.fillPassword(user.password);
+    await regist_form.choseYear();
     await regist_form.choseSex();
     await regist_form.submitRegist();
 
