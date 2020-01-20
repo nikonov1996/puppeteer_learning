@@ -26,10 +26,8 @@ module.exports = function RegistForm(page) {
     await page.type("input[name=reg_passwd__]", password);
   };
 
-  this.choseYear = async (year = 1995) => {
-    await page.evaluate(() => {
-      document.getElementById("year").value = `${year}`;
-    });
+  this.choseYear = async year => {
+    await page.select("select#year", year);
   };
 
   this.choseSex = async () => {
