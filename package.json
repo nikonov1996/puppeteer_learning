@@ -4,9 +4,7 @@
   "description": "puppeteer learning courses",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test google": "test google.spec.js",
-    "test facebook": "test form.spec.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,12 +21,12 @@
   },
   "homepage": "https://github.com/nikonov1996/puppeteer-learning#readme",
   "dependencies": {
-    "faker": "^4.1.0",
-    "jest": "^24.9.0",
-    "puppeteer": "^2.0.0",
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.3"
+    "@babel/preset-env": "^7.8.3",
+    "faker": "^4.1.0",
+    "jest": "^25.1.0",
+    "puppeteer": "^2.0.0"
   }
 }

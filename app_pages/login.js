@@ -1,57 +1,44 @@
 import "@babel/polyfill";
-const puppeteer = require("puppeteer");
-
-const width = 1920;
-const height = 1080;
+const { LOGIN_FORM } = require('../service/selectors');
+const URL = require('../service/urls')
 
 class LoginPage {
-  constructor(){
-    this.url = 'https://www.facebook.com/login/';
+  constructor(page){
+    this.page = page;
   }
 
-  async open(){
-    this.browser = await puppeteer.launch({
-      headless: false,
-      slowMo: 80,
-      defaultViewport: null,
-      args: [`--window-size=${width},${height}`]
-    });
-    this.page = await this.browser.newPage();
-    await this.page.goto(this.url);
-  }
-
-  async close(){
-    await this.page.close();
-    await this.browser.close();
-  }
-
-  title(){
-    return this.page.title();
+  async navigate(){
+    await this.page.goto(URL.LOGIN_PAGE);
   }
 
   async setEmail(email){
     
-    await this.page.waitForSelector('input#email');
-    await this.page.click('input#email');
-    await this.page.type('input#email', email);
+    await this.page.waitForSelector(LOGIN_FORM.EMAIL_INPUT);
+    await this.page.click(LOGIN_FORM.EMAIL_INPUT);
+    await this.page.type(LOGIN_FORM.EMAIL_INPUT, email);
   }
 
   async setPassword(password){
-    await this.page.waitForSelector('input#pass');
-    await this.page.click('input#pass');
-    await this.page.type('input#pass', password);
+    await this.page.waitForSelector(LOGIN_FORM.PASSWORD_INPUT);
+    await this.page.click(LOGIN_FORM.PASSWORD_INPUT);
+    await this.page.type(LOGIN_FORM.PASSWORD_INPUT, password);
   }
 
   async submit(){
-    await this.page.click('button#loginbutton');
+    await this.page.click(LOGIN_FORM.LOGIN_BUTTON);
   }
 
-  async getPasswordText(){
-    const result = await this.page.$eval('input#pass', el => el.innerText);
-    return result;
-  }
+  async gotoRegistPage(){
+    await this.page.hover(LOGIN_FORM.EMAIL_INPUT);
+    await this.page.waitForSelector(LOGIN_FORM.REGIST_PAGE_REDIRECT_LINK);
+    await this.page.click(LOGIN_FORM.REGIST_PAGE_REDIRECT_LINK);
+  } 
 
+  async login(email, password){
+    await this.setEmail(email);
+    await this.setPassword(password);
+    await this.submit();
+  }
 
 }
-
 module.exports = { LoginPage };

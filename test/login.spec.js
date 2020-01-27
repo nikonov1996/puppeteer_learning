@@ -1,7 +1,9 @@
 import "@babel/polyfill";
 const faker = require("faker");
-const {LoginPage} = require('../app_pages/login');
-
+import "puppeteer";
+import createBrowser  from '../service/createBrowser';
+const { LoginPage } = require("../app_pages/login");
+const { RegistPage } = require('../app_pages/regist');
 
 const user = {
   firstname: faker.name.firstName(),
@@ -10,22 +12,39 @@ const user = {
   password: faker.random.words()
 };
 
-const page = new LoginPage();
-beforeAll(async ()=>{
-  await page.open();
-})
+let page;
+let browser;
+beforeAll(async () => {
+  browser = await createBrowser();
+  page = await browser.newPage();
+});
 
-afterAll(async ()=>{
-  await page.close();
-})
+afterAll(async () => {
+  await browser.close();
+});
 
-describe('Login page tests', ()=>{
- 
-  test('test 1', async()=>{
-    await page.setEmail(user.email);
-    await page.setPassword(user.password);
-    await page.submit();
+describe("Login page tests", () => {
 
-    expect(true).toBe(true);
-  },30000)
-})
+  test("test 1", async () => {
+    const login_page = new LoginPage(page);
+    await login_page.navigate();
+    await login_page.login(
+      user.email,
+      user.password
+    );
+    await login_page.gotoRegistPage();
+    const regist_page = new RegistPage(page);
+
+    expect(regist_page.URL()).toBe('https://www.facebook.com/r.php');
+    
+    await regist_page.fillRegistForm(
+      user.email,
+      user.firstname,
+      user.lastname,
+      user.password,
+      '1996'
+    );
+    await regist_page.submitRegist();
+    
+  }, 100000);
+});
