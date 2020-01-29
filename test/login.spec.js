@@ -2,8 +2,8 @@ import "@babel/polyfill";
 const faker = require("faker");
 import "puppeteer";
 import createBrowser  from '../service/createBrowser';
-const { LoginPage } = require("../app_pages/login");
-const { RegistPage } = require('../app_pages/regist');
+const { LoginPage } = require("../pages/login");
+const { RegistPage } = require('../pages/regist');
 
 const user = {
   firstname: faker.name.firstName(),
@@ -25,7 +25,7 @@ afterAll(async () => {
 
 describe("Login page tests", () => {
 
-  test("test 1", async () => {
+  test("If login with wrong account, user can go to regist page and registrate", async () => {
     const login_page = new LoginPage(page);
     await login_page.navigate();
     await login_page.login(

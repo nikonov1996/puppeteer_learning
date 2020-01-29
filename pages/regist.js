@@ -1,15 +1,8 @@
 import "@babel/polyfill";
+const {Base} = require('../pages/base');
 const {REGIST_FORM} = require('../service/selectors');
 
-class RegistPage {
-  
-  constructor(page){
-   this.page = page;
-  }
-
-  URL(){
-    return this.page.url();
-  }
+class RegistPage extends Base{
 
   async setFirstname(firstname) {
     await this.page.waitForSelector(REGIST_FORM.FIRSTNAME_INPUT);

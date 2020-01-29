@@ -1,11 +1,9 @@
 import "@babel/polyfill";
 const { LOGIN_FORM } = require('../service/selectors');
-const URL = require('../service/urls')
+const {Base} = require('../pages/base');
+const URL = require('../service/urls');
 
-class LoginPage {
-  constructor(page){
-    this.page = page;
-  }
+class LoginPage extends Base{
 
   async navigate(){
     await this.page.goto(URL.LOGIN_PAGE);
