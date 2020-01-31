@@ -32,18 +32,13 @@ describe("Login page tests", () => {
   })
 
   test("If login with wrong account, user can go to regist page and registrate", async () => {
-  //  const login_page = new LoginPage(page);
-  //  const regist_page = new RegistPage(page);
     await login_page.navigate();
     await login_page.login(
       user.email,
       user.password
     );
     await login_page.gotoRegistPage();
-    
-
     expect(regist_page.URL()).toBe('https://www.facebook.com/r.php');
-    
     await regist_page.fillRegistForm(
       user.email,
       user.firstname,
