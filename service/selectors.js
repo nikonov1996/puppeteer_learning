@@ -25,7 +25,7 @@ module.exports = {
     },
 
     ADD_TO_CART_BTN: ".btn.add_to_cart.j-add_to_cart",
-    PRODUCT_LIST: "#j-avail-list",
+    PRODUCT_LIST: "#j-avail-list > ul > li",
     MODAL_POPUP: ".mfp-content",
     GO_TO_ORDER_BTN: ".mfp-content .btns a.btn",
     CONTINUE_SHOPPING_BTN: ".mfp-content .btns .close-modal"
@@ -42,27 +42,29 @@ module.exports = {
       PHONE_INPUT: ".ind input[name=phone]"
     },
     DELIVERY_INFO: {
-      CITY_INPUT:'#order_city',
-      CITY_LIST:'#ui-id-1',
-      CHOSE_CITY_FROM_LIST: (num)=>{
+      CITY_INPUT: "#order_city",
+      CITY_LIST: "#ui-id-1",
+      CHOSE_CITY_FROM_LIST: num => {
         return `#ui-id-1 li:nth-child(${num})`;
       },
-      CURIER_CHECK: '.check-delivery-courier .checkbox',
-      INDEX_INPUT: 'input[name=zip_code]',
-      STREET_INPUT: 'input[name=street]',
-      HOME_NUMBER_INPUT: 'input[name=house]',
-      FLAT_NUMBER_INPUT: 'input[name=room]',
-      SELF_DELIVERY_CHECK: '.check-delivery-self .checkbox',
-      CHOSE_POINT_BTN: '.hold-name a', //??
-      CHANGE_POINT_BTN: '.hold-name a',
-      MODAL_POPUP: '#modal-map-select',
-      SAVE_BTN: '#modal-map-select .btns div:nth-child(2)',
-      CANCEL_BTN: '#modal-map-select .btns div:nth-child(1)'
+      CURIER_CHECK: ".check-delivery-courier .checkbox",
+      INDEX_INPUT: "input[name=zip_code]",
+      STREET_INPUT: "input[name=street]",
+      HOME_NUMBER_INPUT: "input[name=house]",
+      FLAT_NUMBER_INPUT: "input[name=room]",
+      SELF_DELIVERY_CHECK: ".check-delivery-self .checkbox",
+      CHOSE_POINT_BTN: ".hold-name a", //??
+      CHANGE_POINT_BTN: ".hold-name a",
+      MODAL_POPUP: "#modal-map-select",
+      SAVE_BTN: "#modal-map-select .btns div:nth-child(2)",
+      CANCEL_BTN: "#modal-map-select .btns div:nth-child(1)"
     },
-    PAYMENT_INFO:{
-      BANK_CARD_CHECK: '.sq-checks .check-payment-card .checkbox',
-      BILL_CHECK: '.sq-checks .check-payment-jur .checkbox'
+    PAYMENT_INFO: {
+      BANK_CARD_CHECK: ".sq-checks .check-payment-card .checkbox",
+      BILL_CHECK: ".sq-checks .check-payment-jur .checkbox",
+      ORGANIZATION_NAME_INPUT: "input[name=orgname]",
+      INN_INPUT: "input[name=inn]"
     },
-    COMMENTS_INPUT: '.input.placeholder textarea'
+    COMMENTS_INPUT: ".input.placeholder textarea"
   }
 };
