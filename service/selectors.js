@@ -65,6 +65,7 @@ module.exports = {
       ORGANIZATION_NAME_INPUT: "input[name=orgname]",
       INN_INPUT: "input[name=inn]"
     },
-    COMMENTS_INPUT: ".input.placeholder textarea"
+    COMMENTS_INPUT: ".input.placeholder textarea",
+    SUBMIT_BUTTON: '.total button'
   }
 };

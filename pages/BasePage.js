@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-class Base{
+class BasePage{
   
   constructor(page){
     this.page = page;
@@ -14,4 +14,4 @@ class Base{
   }
 }
 
-module.exports = {Base};
+module.exports = {BasePage};
