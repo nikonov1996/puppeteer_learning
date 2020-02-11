@@ -1,5 +1,4 @@
 import "@babel/polyfill";
-const faker = require("faker");
 import "puppeteer";
 import createBrowser from "../service/createBrowser";
 const { ProductPage } = require("../pages/ProductPage");
@@ -21,7 +20,7 @@ afterAll(async () => {
   await browser.close();
 });
 
-describe.each(scenario)(`Order with %j.`, scenario => {
+describe.each(products)(`Tests for %s product`, product => {
   let product_page;
   let cart_page;
   let order_page;
@@ -34,15 +33,15 @@ describe.each(scenario)(`Order with %j.`, scenario => {
     // order_result_page = new OrderResultPage(page);
   });
 
-  test.each(products)(
-    "Create order",
-    async product => {
+  test.each(scenario)(
+    "Orders with payment and delivery info: %j",
+    async scenar => {
       await product_page.openProduct(product);
       await product_page.selectElemFromProductList(1);
       await product_page.addToCart();
       await product_page.continueToCard();
       await cart_page.goToOrder();
-      await order_page.fillOrderForm(tester_user, scenario);
+      await order_page.fillOrderForm(tester_user, scenar);
       expect(true).toBe(true);
     },
     100000
