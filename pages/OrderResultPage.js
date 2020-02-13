@@ -8,16 +8,11 @@ class OrderResultPage extends BasePage {
     await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
   }
 
-  async checkSuccess() {
+  async checkSuccess() { //todo можно проверить по тайтлу
     await this.page.waitForSelector(".basket-text h2");
-    const success = await this.page.evaluate(() => {
-      return document.querySelector(".basket-text h2").innerText;
+    return await this.page.evaluate(() => {
+      return document.querySelector(".basket-text h2").innerText.includes("успешно");
     });
-    if (success.includes("успешно")) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   async getOrderNumber() {
