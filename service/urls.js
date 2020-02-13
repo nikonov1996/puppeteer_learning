@@ -1,6 +1,4 @@
 module.exports = {
-  LOGIN_PAGE:'https://www.facebook.com/login/',
-  REGIST_PAGE:'https://www.facebook.com/r.php',
   ZENER_PRODUCT_PAGE:(productName)=>{
     return  `https://zener.ru/shop/product/${productName}/`;
   },
