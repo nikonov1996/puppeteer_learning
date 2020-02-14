@@ -1,4 +1,4 @@
 node_modules
-service/urls.js
-service/urls.js
+allure-results
 service/users.js
+service/urls.js

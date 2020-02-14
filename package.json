@@ -4,7 +4,8 @@
   "description": "puppeteer learning courses",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "report": "allure serve"
   },
   "repository": {
     "type": "git",
@@ -20,13 +21,19 @@
     "url": "https://github.com/nikonov1996/puppeteer-learning/issues"
   },
   "homepage": "https://github.com/nikonov1996/puppeteer-learning#readme",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-allure/dist/setup"
+    ]
+  },
   "dependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
     "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "faker": "^4.1.0",
     "jest": "^25.1.0",
-    "puppeteer": "^2.0.0"
+    "jest-allure": "^0.1.1",
+    "puppeteer": "^2.1.1"
   }
 }

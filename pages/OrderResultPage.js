@@ -22,7 +22,7 @@ class OrderResultPage extends BasePage {
   }
 
   async getInfoByOrderNumbers(from, to) {
-    await this.page.goto(URL.ZENER_ORDER_INFO_PAGE(from, to));
+    await this.page.goto(URL.DEV_ORDER_INFO_PAGE(from, to));
     await this.page.waitForSelector("body");
     const order_info = await this.page.evaluate(() => {
       return JSON.parse(document.querySelector("body").innerText);
