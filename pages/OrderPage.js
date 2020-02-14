@@ -14,12 +14,18 @@ class OrderPage extends BasePage {
   }
 
   async setEmail(email){
+    await this.page.waitForSelector(ORDER_PAGE.CONTACT_INFO.EMAIL_INPUT);
+    await this.page.click(ORDER_PAGE.CONTACT_INFO.EMAIL_INPUT, { clickCount: 3 });
+    await this.page.keyboard.press("Backspace");
     await this.page.waitForSelector(ORDER_PAGE.CONTACT_INFO.EMAIL_INPUT);  
     await this.page.click(ORDER_PAGE.CONTACT_INFO.EMAIL_INPUT);
     await this.page.type(ORDER_PAGE.CONTACT_INFO.EMAIL_INPUT, email);
   }
 
   async setPhone(phone){
+    await this.page.waitForSelector(ORDER_PAGE.CONTACT_INFO.PHONE_INPUT);
+    await this.page.click(ORDER_PAGE.CONTACT_INFO.PHONE_INPUT, { clickCount: 3 });
+    await this.page.keyboard.press("Backspace");
     await this.page.waitForSelector(ORDER_PAGE.CONTACT_INFO.PHONE_INPUT); 
     await this.page.click(ORDER_PAGE.CONTACT_INFO.PHONE_INPUT);
     await this.page.type(ORDER_PAGE.CONTACT_INFO.PHONE_INPUT, phone);
@@ -51,6 +57,9 @@ class OrderPage extends BasePage {
     await this.page.click(ORDER_PAGE.DELIVERY_INFO.CURIER_CHECK);
   }
   async setIndex(index){
+    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
+    await this.page.click(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT, { clickCount: 3 });
+    await this.page.keyboard.press("Backspace");
     await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
     await this.page.click(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT, index);
@@ -120,7 +129,7 @@ class OrderPage extends BasePage {
       await this.setINN(user.inn);
     }
 
-    //await this.submit();
+    await this.submit();
 
   }
 

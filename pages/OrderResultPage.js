@@ -4,9 +4,9 @@ const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");
 
 class OrderResultPage extends BasePage {
-  async goto() {
-    await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
-  }
+  // async goto() {
+  //   await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
+  // }
 
   async checkSuccess() { //todo можно проверить по тайтлу
     await this.page.waitForSelector(".basket-text h2");
@@ -17,7 +17,7 @@ class OrderResultPage extends BasePage {
 
   async getOrderNumber() {
     //взять url разбить на части по "/" взять последнюю часть это и будет номер
-    let url = await this.URL();
+    let url = await this.page.url();
     return url.split("/").pop();
   }
 

@@ -5,7 +5,7 @@ const URL = require("../service/urls");
 
 class ProductPage extends BasePage {
   async openProduct(productName) {
-    await this.page.goto(URL.ZENER_PRODUCT_PAGE(productName));
+    await this.page.goto(URL.DEV_PRODUCT_PAGE(productName));
   }
 
   async selectElemFromProductList(elemNumber) {

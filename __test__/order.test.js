@@ -12,7 +12,7 @@ let products = require("../service/products");
 let page;
 let browser;
 beforeAll(async () => {
-  browser = await createBrowser(false); // parametr visible: true or false, false it's headless mode
+  browser = await createBrowser(true); // parametr visible: true or false, false it's headless mode
   page = await browser.newPage();
 });
 
@@ -20,7 +20,7 @@ afterAll(async () => {
   await browser.close();
 });
 
-describe.each(products)(`Tests for %s product`, product => {
+describe.each(scenario)("Order's with scenario: %j", scenar => {
   let product_page;
   let cart_page;
   let order_page;
@@ -33,34 +33,36 @@ describe.each(products)(`Tests for %s product`, product => {
     order_result_page = new OrderResultPage(page);
   });
 
-  test.each(scenario)(
-    "Order's info: %j",
-    async scenar => {
+  test.each(products)(
+    `Test for %s product`,
+    async product => {
       await product_page.openProduct(product);
       await product_page.checkProductWasLoaded();
-      if (await product_page.ifProductListPresent()) {
-        console.log("test.steps:");
-        // let dataBeforeOrder = await product_page.getEachProductsParams();
-        // let orderNumbers = [];
-        // for (let i = 1; i <= (await product_page.getListLength()); i++) {
-        //   await product_page.selectElemFromProductList(i);
-        //   await product_page.addToCart();
-        //   await product_page.continueToCard();
-        //   await cart_page.goToOrder();
-        //   await order_page.fillOrderForm(tester_user, scenar);
-        //   //await order_page.submit();// add submit order
-        //   expect(await order_result_page.checkSuccess()).toBe(true);
-        //   orderNumbers.push(await order_result_page.getOrderNumber());
-        // }
-        // let dataAfterOrder = await order_result_page.getInfoByOrderNumbers(
-        //   orderNumbers[0],
-        //   orderNumbers[orderNumbers.length-1]
-        // );
-        // expect(dataAfterOrder).toEqual(dataBeforeOrder);
+      const condition = await product_page.ifProductListPresent();
+      expect(condition).toBe(true);
+      if (condition) {
+        let dataBeforeOrder = await product_page.getEachProductsParams();
+        let orderNumbers = [];
+        const length = await product_page.getListLength();
+        for (let i = 1; i <= length; i++) {
+          await product_page.openProduct(product);
+          await product_page.checkProductWasLoaded();
+          await product_page.selectElemFromProductList(i);
+          await product_page.addToCart();
+          await product_page.continueToCard();
+          await cart_page.goToOrder();
+          await order_page.fillOrderForm(tester_user, scenar);
+          expect(await order_result_page.checkSuccess()).toBe(true);
+          orderNumbers.push(await order_result_page.getOrderNumber());
+        }
+        let dataAfterOrder = await order_result_page.getInfoByOrderNumbers(
+          orderNumbers[0],
+          orderNumbers[orderNumbers.length - 1]
+        );
+        expect(dataAfterOrder).toEqual(dataBeforeOrder);
       }
-      
-      // let arrtest = [{ name: "D2D-1000", manufacturer: "Omron" }]; // массив для теста сравнения
+
     },
-    100000
+    300000
   );
 });
