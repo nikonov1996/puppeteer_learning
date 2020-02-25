@@ -3,11 +3,11 @@ const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");
 
 class OrderResultPage extends BasePage {
-  /* 
+   
   async goto() {
     await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
   }
-*/
+
   async waitSuccessPage() {
     await this.page.waitForSelector("h2", 
     {

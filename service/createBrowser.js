@@ -8,7 +8,7 @@ module.exports = async function({visible}){
   if(visible){
   return await puppeteer.launch({
     headless: false,
-    slowMo: 50,
+    slowMo: 80,
     defaultViewport: null,
     args: [`--window-size=${width},${height}`]
   });
