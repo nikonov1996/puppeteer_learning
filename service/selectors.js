@@ -28,7 +28,7 @@ module.exports = {
         return `#ui-id-1 li:nth-child(${num})`;
       },
       CURIER_CHECK: ".check-delivery-courier .checkbox",
-      INDEX_INPUT: "input[name=zip_code]",
+      INDEX_INPUT: "div.contact-information__el--index input",
       STREET_INPUT: "input[name=street]",
       HOME_NUMBER_INPUT: "input[name=house]",
       FLAT_NUMBER_INPUT: "input[name=room]",

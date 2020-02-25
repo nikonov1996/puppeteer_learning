@@ -1,22 +1,28 @@
 import "@babel/polyfill";
-const { PRODUCT_PAGE } = require("../service/selectors");
 const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");
 
 class OrderResultPage extends BasePage {
-  // async goto() {
-  //   await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
-  // }
+  /* 
+  async goto() {
+    await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
+  }
+*/
+  async waitSuccessPage() {
+    await this.page.waitForSelector("h2", 
+    {
+      hidden: false,
+      timeout: 20000
+    });
+  }
 
-  async checkSuccess() { //todo можно проверить по тайтлу
-    await this.page.waitForSelector(".basket-text h2");
+  async checkSuccess() {
     return await this.page.evaluate(() => {
-      return document.querySelector(".basket-text h2").innerText.includes("успешно");
+      return document.querySelector("h2").innerText.includes("успешно");
     });
   }
 
   async getOrderNumber() {
-    //взять url разбить на части по "/" взять последнюю часть это и будет номер
     let url = await this.page.url();
     return url.split("/").pop();
   }
@@ -39,7 +45,12 @@ class OrderResultPage extends BasePage {
     }
 
     return arr;
-    // return order_info;
+  }
+
+  async clearArrays(...arr) {
+    arr.forEach(e => {
+      e.length = 0;
+    });
   }
 }
 

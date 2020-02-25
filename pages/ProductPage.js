@@ -4,6 +4,7 @@ const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");
 
 class ProductPage extends BasePage {
+  
   async openProduct(productName) {
     await this.page.goto(URL.DEV_PRODUCT_PAGE(productName));
   }
@@ -47,30 +48,47 @@ class ProductPage extends BasePage {
   }
 
   async checkProductWasLoaded() {
-    const rightTitle = await this.page.evaluate(() => {
-      return (
-        document.title.includes("шт") && !document.title.includes("купить")
-      );
+    const trigger = await this.page.evaluate(() => {
+      return document
+        .querySelector(".j-delivery-list")
+        .getAttribute("data-update");
     });
-    if (rightTitle) {
+
+    if (trigger.includes("1")) {
       await this.page.waitForSelector(".j-item-progressbar", {
         hidden: true,
         timeout: 30000
       });
     }
+
+    /**This way is based on teg 'title', it's bad practice because titles often changes */
+    /*const title = await this.page.title();
+    if (title.includes("шт") && !title.includes("купить")) {
+      await this.page.waitForSelector(".j-item-progressbar", {
+        hidden: true,
+        timeout: 30000
+      });
+    }*/
   }
 
   async ifProductListPresent() {
     return await this.page.evaluate(() => {
-      return (
-        document.title.includes("шт") || !document.title.includes("запрос")
-      );
+      const display = document.querySelector(".j-noavail").style.display;
+      if (display.includes("none")) {
+        return true;
+      } else {
+        return false;
+      }
     });
+    
+    /**This way is based on teg 'title', it's bad practice because titles often changes */
+    // const title = await this.page.title();
+    // return title.includes("шт") && !title.includes("запрос");
   }
 
-  async getListLength(){
+  async getListLength() {
     return await this.page.evaluate(() => {
-      return document.querySelectorAll('#j-avail-list li').length;
+      return document.querySelectorAll("#j-avail-list li").length;
     });
   }
 }

@@ -39,7 +39,9 @@ class OrderPage extends BasePage {
     await this.page.keyboard.press("Backspace");
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.CITY_INPUT, city);
     await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.CITY_LIST);
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.CHOSE_CITY_FROM_LIST(1));
+    await this.page.keyboard.press("ArrowDown");
+    await this.page.keyboard.press("Enter");
+   // await this.page.click(ORDER_PAGE.DELIVERY_INFO.CHOSE_CITY_FROM_LIST(1));
   }
 
   /** Self delivery **/
@@ -56,24 +58,32 @@ class OrderPage extends BasePage {
   async chooseCurierDelivery(){
     await this.page.click(ORDER_PAGE.DELIVERY_INFO.CURIER_CHECK);
   }
+
   async setIndex(index){
+    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT,
+      { hidden:false,
+        timeout:10000
+      });
+    await this.page.evaluate(() => {
+      document.querySelector("div.contact-information__el--index input").value = '';
+    });
     await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT, { clickCount: 3 });
-    await this.page.keyboard.press("Backspace");
-    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
+   // await this.page.click(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT);
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.INDEX_INPUT, index);
   }
+
   async setStreet(street){
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.STREET_INPUT);
+    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.STREET_INPUT);
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.STREET_INPUT, street);
   }
+
   async setHomeNum(homeNum){
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.HOME_NUMBER_INPUT);
+    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.HOME_NUMBER_INPUT);
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.HOME_NUMBER_INPUT, homeNum);
   }
+  
   async setFlatNum(flatNum){
-    await this.page.click(ORDER_PAGE.DELIVERY_INFO.FLAT_NUMBER_INPUT);
+    await this.page.waitForSelector(ORDER_PAGE.DELIVERY_INFO.FLAT_NUMBER_INPUT);
     await this.page.type(ORDER_PAGE.DELIVERY_INFO.FLAT_NUMBER_INPUT, flatNum);
   }
   
