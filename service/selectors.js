@@ -28,7 +28,7 @@ module.exports = {
         return `#ui-id-1 li:nth-child(${num})`;
       },
       CURIER_CHECK: ".check-delivery-courier .checkbox",
-      INDEX_INPUT: "div.contact-information__el--index input",
+      INDEX_INPUT: "div.check-delivery-courier .inputs .contact-information__el--index div.input input",
       STREET_INPUT: "input[name=street]",
       HOME_NUMBER_INPUT: "input[name=house]",
       FLAT_NUMBER_INPUT: "input[name=room]",
@@ -45,7 +45,7 @@ module.exports = {
       ORGANIZATION_NAME_INPUT: "input[name=orgname]",
       INN_INPUT: "input[name=inn]"
     },
-    COMMENTS_INPUT: ".input.placeholder textarea",
-    SUBMIT_BUTTON: '.total button'
+    COMMENTS_INPUT: "textarea[name='text']",
+    SUBMIT_BUTTON: '.j-to-payment-button'
   }
 };

@@ -1,4 +1,5 @@
 import "@babel/polyfill";
+import "@babel/preset-env";
 const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");
 
@@ -8,13 +9,7 @@ class OrderResultPage extends BasePage {
     await this.page.goto("http://dev9.redramka.ru/shop/saleorder/238017");
   }
 
-  async waitSuccessPage() {
-    await this.page.waitForSelector("h2", 
-    {
-      hidden: false,
-      timeout: 20000
-    });
-  }
+  
 
   async checkSuccess() {
     return await this.page.evaluate(() => {

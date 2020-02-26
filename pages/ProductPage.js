@@ -1,4 +1,5 @@
 import "@babel/polyfill";
+import "@babel/preset-env";
 const { PRODUCT_PAGE } = require("../service/selectors");
 const { BasePage } = require("./BasePage");
 const URL = require("../service/urls");

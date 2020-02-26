@@ -1,4 +1,5 @@
 import "@babel/polyfill";
+import "@babel/preset-env";
 const {CART_PAGE} = require("../service/selectors");
 const {BasePage} = require('./BasePage');
 

@@ -1,16 +1,13 @@
 import "@babel/polyfill";
-const puppeteer = require("puppeteer");
-
-const width = 1920;
-const height = 1080;
+import "@babel/preset-env";
+let puppeteer = require("puppeteer");
 
 module.exports = async function({visible}){
   if(visible){
   return await puppeteer.launch({
     headless: false,
     slowMo: 80,
-    defaultViewport: null,
-    args: [`--window-size=${width},${height}`]
+    defaultViewport: null
   });
 }else{
   return await puppeteer.launch();
