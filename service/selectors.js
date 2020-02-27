@@ -27,7 +27,7 @@ module.exports = {
       CHOSE_CITY_FROM_LIST: num => {
         return `#ui-id-1 li:nth-child(${num})`;
       },
-      CURIER_CHECK: ".check-delivery-courier .checkbox",
+      CURIER_CHECK: "label.check-delivery-courier",
       INDEX_INPUT: "div.check-delivery-courier .inputs .contact-information__el--index div.input input",
       STREET_INPUT: "input[name=street]",
       HOME_NUMBER_INPUT: "input[name=house]",

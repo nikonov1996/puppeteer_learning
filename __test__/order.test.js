@@ -25,20 +25,16 @@ describe.each(scenario)("| Orders with scenario: %j", scenar => {
   let order_page;
   let order_result_page;
 
-  // beforeAll(async () => {
-  //   product_page = new ProductPage(page);
-  //   cart_page = new CartPage(page);
-  //   order_page = new OrderPage(page);
-  //   order_result_page = new OrderResultPage(page);
-  // });
+  beforeAll(async () => {
+    product_page = new ProductPage(page);
+    cart_page = new CartPage(page);
+    order_page = new OrderPage(page);
+    order_result_page = new OrderResultPage(page);
+  });
 
   test.each(products)(
     `Test for %s product`,
     async product => {
-      product_page = new ProductPage(page);
-      cart_page = new CartPage(page);
-      order_page = new OrderPage(page);
-      order_result_page = new OrderResultPage(page);
       await product_page.openProduct(product);
       await product_page.checkProductWasLoaded();
       const condition = await product_page.ifProductListPresent();
@@ -46,7 +42,7 @@ describe.each(scenario)("| Orders with scenario: %j", scenar => {
         let dataBeforeOrder = await product_page.getEachProductsParams();
         let orderNumbers = [];
         const list_length = await product_page.getListLength();
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= list_length; i++) {
           await product_page.openProduct(product);
           await product_page.checkProductWasLoaded();
           await product_page.selectElemFromProductList(i);

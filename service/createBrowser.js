@@ -6,7 +6,7 @@ module.exports = async function({visible}){
   if(visible){
   return await puppeteer.launch({
     headless: false,
-    slowMo: 80,
+    slowMo: 50,
     defaultViewport: null
   });
 }else{
